@@ -20,7 +20,10 @@ allprojects {
     repositories {
         // OR repository must be defined first so that specific version of drools-compiler is found
         maven {
-            url "http://m2repo.openremote.com/content/groups/public/"
+            url "https://pkgs.dev.azure.com/OpenRemote/OpenRemote/_packaging/OpenRemote/maven/v1"
+        }
+        maven {
+            url "https://pkgs.dev.azure.com/OpenRemote/OpenRemote/_packaging/3rdParty/maven/v1"
         }
         jcenter();
         mavenCentral()
