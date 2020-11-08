@@ -273,7 +273,7 @@ import com.bmuschko.gradle.docker.tasks.image.*
 
 task createDockerfile(type: Dockerfile) {
     destFile = project.file("$project.buildDir/install/Dockerfile")
-    from "java:8"
+    from "adoptopenjdk/openjdk8:jdk8u272-b10-ubuntu-slim"
 
     maintainer 'OpenRemote <support@openremote.org>'
 
@@ -283,7 +283,7 @@ task createDockerfile(type: Dockerfile) {
     // otherwise empty folders (all tomcat logs folders) where not present on image
     addFile project(':OpenRemote-Controller').dockerControllerTar.archiveName, "/opt"
 
-    runCommand 'groupadd -r openremote && useradd -r -g openremote openremote && chown -R openremote.openremote /opt/OpenRemote-Controller && chown -R openremote.openremote /opt/or-resources'
+    runCommand 'groupadd -r openremote && useradd -r -g openremote openremote && chown -R openremote.openremote /opt/OpenRemote-Controller && chown -R openremote.openremote /opt/or-resources && chmod +x /opt/OpenRemote-Controller/bin/openremote.sh'
 
     exposePort 8688
 
